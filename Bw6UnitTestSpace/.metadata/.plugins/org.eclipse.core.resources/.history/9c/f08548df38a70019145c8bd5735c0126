@@ -5,7 +5,7 @@
     "title" : "Summary about the new REST service.",
     "description" : "Summary about the new REST service."
   },
-  "host" : "localhost:26666",
+  "host" : "",
   "basePath" : "/",
   "schemes" : [ "http" ],
   "paths" : {

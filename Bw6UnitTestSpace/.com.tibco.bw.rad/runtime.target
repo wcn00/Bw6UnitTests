@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.6"?>
+
+<target name="bw-runtime">
+<locations>
+
+<location path="/local/home/wcn00/tibcobw650/bw/palettes/bwdcp/4.6//hotfix/runtime/plugins" type="Directory"/>
+<location path="/local/home/wcn00/tibcobw650/bw/palettes/bwdcp/4.6//runtime/plugins" type="Directory"/>
+<location path="/local/home/wcn00/tibcobw650/bw/palettes/mqtt/6.0//hotfix/runtime/plugins" type="Directory"/>
+<location path="/local/home/wcn00/tibcobw650/bw/palettes/mqtt/6.0//runtime/plugins" type="Directory"/>
+<location path="/local/home/wcn00/tibcobw650/bw/palettes/ibmi/7.2//hotfix/runtime/plugins" type="Directory"/>
+<location path="/local/home/wcn00/tibcobw650/bw/palettes/ibmi/7.2//runtime/plugins" type="Directory"/>
+<location path="/local/home/wcn00/tibcobw650/bw/palettes/amqp/6.0//hotfix/runtime/plugins" type="Directory"/>
+<location path="/local/home/wcn00/tibcobw650/bw/palettes/amqp/6.0//runtime/plugins" type="Directory"/>
+<location path="/local/home/wcn00/tibcobw650/bw/palettes/bwcp/2.4//hotfix/runtime/plugins" type="Directory"/>
+<location path="/local/home/wcn00/tibcobw650/bw/palettes/bwcp/2.4//runtime/plugins" type="Directory"/>
+<location path="/local/home/wcn00/tibcobw650/bw/palettes/bwmq/8.5//hotfix/runtime/plugins" type="Directory"/>
+<location path="/local/home/wcn00/tibcobw650/bw/palettes/bwmq/8.5//runtime/plugins" type="Directory"/>
+<location path="/local/home/wcn00/tibcobw650/bw/palettes/swift/6.4//hotfix/runtime/plugins" type="Directory"/>
+<location path="/local/home/wcn00/tibcobw650/bw/palettes/swift/6.4//runtime/plugins" type="Directory"/>
+
+
+<location path="/local/home/wcn00/tibcobw650/bw/6.5/system/hotfix/lib/common" type="Directory"/>
+<location path="/local/home/wcn00/tibcobw650/bw/6.5/system/lib/common" type="Directory"/>
+
+<location path="/local/home/wcn00/tibcobw650/bw/6.5/system/hotfix/palettes" type="Directory"/>
+<location path="/local/home/wcn00/tibcobw650/bw/6.5/system/palettes" type="Directory"/>
+
+<location path="/local/home/wcn00/tibcobw650/bw/6.5/system/hotfix/shared" type="Directory"/>
+<location path="/local/home/wcn00/tibcobw650/bw/6.5/system/shared" type="Profile"/>
+</locations>
+</target>

@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpws:process exitOnStandardFault="no"
-    name="complex.messages.LogicalPutGet" suppressJoinFailure="yes"
-    targetNamespace="http://xmlns.example.com/20190320143505"
+    name="subprocess.reqreplydynamicmq91" suppressJoinFailure="yes"
+    targetNamespace="http://xmlns.example.com/20190319133859"
     xmlns:bpws="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
     xmlns:info="http://www.tibco.com/bw/process/info"
     xmlns:ns="http://www.tibco.com/pe/EngineTypes"
-    xmlns:ns0="http://ns.tibco.com/bw/palette/mqputinput+0f400729-50e5-4360-847d-34cddab8dcb7+input"
-    xmlns:ns1="http://ns.tibco.com/bw/palette/mqputoutput+0f400729-50e5-4360-847d-34cddab8dcb7+output"
-    xmlns:ns2="http://tns.tibco.com/bw/palette/internal/activityerror+bw.mq.putActivity"
-    xmlns:ns3="http://ns.tibco.com/bw/palette/mqgetinput+419610e6-c1d1-47b6-a4a0-bee62796c845+input"
-    xmlns:ns4="http://ns.tibco.com/bw/palette/mqgetoutput+419610e6-c1d1-47b6-a4a0-bee62796c845+output"
-    xmlns:ns5="http://tns.tibco.com/bw/palette/internal/activityerror+bw.mq.getActivity"
-    xmlns:ns6="http://www.example.org/SimpleRest"
+    xmlns:ns0="http://ns.tibco.com/bw/palette/mqputinput+178d99f7-c390-49fd-bc76-27985011a973+input"
+    xmlns:ns1="http://ns.tibco.com/bw/palette/mqgetoutput+178d99f7-c390-49fd-bc76-27985011a973+output"
+    xmlns:ns2="http://tns.tibco.com/bw/palette/internal/activityerror+bw.mq.reqReplyActivity"
+    xmlns:ns3="http://www.example.org/ProjectRestSchema"
     xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912"
     xmlns:sca-bpel="http://docs.oasis-open.org/ns/opencsa/sca-bpel/200801"
     xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"
@@ -178,8 +175,8 @@
             <element name="DuplicateKeyException" type="tns:DuplicateKeyExceptionType"/>
         </schema>
         <xsd:schema
-            targetNamespace="http://ns.tibco.com/bw/palette/mqputinput+0f400729-50e5-4360-847d-34cddab8dcb7+input"
-            xmlns:ns0="http://ns.tibco.com/bw/palette/mqputinput+0f400729-50e5-4360-847d-34cddab8dcb7+input" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            targetNamespace="http://ns.tibco.com/bw/palette/mqputinput+178d99f7-c390-49fd-bc76-27985011a973+input"
+            xmlns:ns0="http://ns.tibco.com/bw/palette/mqputinput+178d99f7-c390-49fd-bc76-27985011a973+input" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
             <xsd:complexType name="mqpropertiestype">
                 <xsd:sequence>
                     <xsd:element maxOccurs="1" minOccurs="0"
@@ -214,6 +211,8 @@
                         name="report" type="xsd:int"/>
                     <xsd:element maxOccurs="1" minOccurs="0"
                         name="encoding" type="xsd:int"/>
+                    <xsd:element maxOccurs="1" minOccurs="0"
+                        name="waitinterval" type="xsd:int"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:element name="mqproperties" type="ns0:mqpropertiestype"/>
@@ -239,16 +238,14 @@
                     <xsd:element maxOccurs="1" minOccurs="0"
                         name="dynamicProperties" type="ns0:dynamicPropertiesType"/>
                     <xsd:element maxOccurs="1" minOccurs="1" name="text" type="xsd:string"/>
-                    <xsd:element maxOccurs="1" minOccurs="1"
-                        name="lastMessageInGroup" type="xsd:boolean"/>
                 </xsd:sequence>
             </xsd:complexType>
         </xsd:schema>
         <xsd:schema
-            targetNamespace="http://ns.tibco.com/bw/palette/mqputoutput+0f400729-50e5-4360-847d-34cddab8dcb7+output"
-            xmlns:ns0="http://ns.tibco.com/bw/palette/mqputoutput+0f400729-50e5-4360-847d-34cddab8dcb7+output" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            targetNamespace="http://ns.tibco.com/bw/palette/mqgetoutput+178d99f7-c390-49fd-bc76-27985011a973+output"
+            xmlns:ns0="http://ns.tibco.com/bw/palette/mqgetoutput+178d99f7-c390-49fd-bc76-27985011a973+output" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
             <xsd:complexType name="mqpropertiestype">
-                <xsd:sequence>
+                <xsd:sequence maxOccurs="1" minOccurs="1">
                     <xsd:element maxOccurs="1" minOccurs="0"
                         name="destination" type="xsd:string"/>
                     <xsd:element maxOccurs="1" minOccurs="0"
@@ -294,6 +291,8 @@
                     <xsd:element maxOccurs="1" minOccurs="0"
                         name="encoding" type="xsd:int"/>
                     <xsd:element maxOccurs="1" minOccurs="0"
+                        name="waitinterval" type="xsd:int"/>
+                    <xsd:element maxOccurs="1" minOccurs="0"
                         name="messageType" type="xsd:int"/>
                     <xsd:element maxOccurs="1" minOccurs="0"
                         name="backoutCount" type="xsd:int"/>
@@ -308,15 +307,32 @@
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:element name="mqproperties" type="ns0:mqpropertiestype"/>
-            <xsd:element name="InteractionOutput" type="ns0:InteractionOutputType"/>
+            <xsd:complexType name="dynamicPropertyType">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="name" type="xsd:string"/>
+                    <xsd:element maxOccurs="1" minOccurs="0"
+                        name="value" type="xsd:string"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="type" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="dynamicPropertiesType">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0"
+                        name="dynamicProperty" type="ns0:dynamicPropertyType"/>
+                </xsd:sequence>
+            </xsd:complexType>
             <xsd:complexType name="InteractionOutputType">
-                <xsd:sequence maxOccurs="1" minOccurs="1">
+                <xsd:sequence>
                     <xsd:element maxOccurs="1" minOccurs="0"
                         name="mqproperties" type="ns0:mqpropertiestype"/>
+                    <xsd:element maxOccurs="1" minOccurs="0"
+                        name="dynamicProperties" type="ns0:dynamicPropertiesType"/>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="text" type="xsd:string"/>
                     <xsd:element maxOccurs="1" minOccurs="0"
                         name="responsetimemillisec" type="xsd:int"/>
                 </xsd:sequence>
             </xsd:complexType>
+            <xsd:element name="InteractionOutput" type="ns0:InteractionOutputType"/>
         </xsd:schema>
         <xsd:schema
             targetNamespace="http://ns.tibco.com/bw/palette/mqexception"
@@ -335,181 +351,63 @@
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:element name="MqActivityError" type="ns0:MqActivityErrorType"/>
-        </xsd:schema>
-        <xsd:schema
-            targetNamespace="http://ns.tibco.com/bw/palette/mqgetinput+419610e6-c1d1-47b6-a4a0-bee62796c845+input"
-            xmlns:ns0="http://ns.tibco.com/bw/palette/mqgetinput+419610e6-c1d1-47b6-a4a0-bee62796c845+input" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-            <xsd:complexType name="mqpropertiestype">
+            <xsd:complexType name="MqReqReplyErrorType">
                 <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="msg" type="xsd:string"/>
                     <xsd:element maxOccurs="1" minOccurs="0"
-                        name="destination" type="xsd:string"/>
+                        name="msgCode" type="xsd:string"/>
                     <xsd:element maxOccurs="1" minOccurs="0"
-                        name="destqmgr" type="xsd:string"/>
+                        name="mqCompCode" type="xsd:string"/>
                     <xsd:element maxOccurs="1" minOccurs="0"
-                        name="correlationId" type="xsd:base64Binary"/>
+                        name="mqReasonCode" type="xsd:string"/>
                     <xsd:element maxOccurs="1" minOccurs="0"
-                        name="messageId" type="xsd:base64Binary"/>
+                        name="mqErrorCode" type="xsd:string"/>
                     <xsd:element maxOccurs="1" minOccurs="0"
-                        name="groupId" type="xsd:base64Binary"/>
+                        name="mqReqReplyCorrId" type="xsd:base64Binary"/>
                     <xsd:element maxOccurs="1" minOccurs="0"
-                        name="characterSet" type="xsd:int"/>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="alternateUserId" type="xsd:string"/>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="waitinterval" type="xsd:int"/>
+                        name="mqReqReplyMsgId" type="xsd:base64Binary"/>
                 </xsd:sequence>
             </xsd:complexType>
-            <xsd:element name="mqproperties" type="ns0:mqpropertiestype"/>
-            <xsd:complexType name="InteractionInputType">
-                <xsd:sequence maxOccurs="1" minOccurs="1">
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="mqproperties" type="ns0:mqpropertiestype"/>
-                </xsd:sequence>
-            </xsd:complexType>
-            <xsd:element name="InteractionInput" type="ns0:InteractionInputType"/>
-        </xsd:schema>
-        <xsd:schema
-            targetNamespace="http://ns.tibco.com/bw/palette/mqgetoutput+419610e6-c1d1-47b6-a4a0-bee62796c845+output"
-            xmlns:ns0="http://ns.tibco.com/bw/palette/mqgetoutput+419610e6-c1d1-47b6-a4a0-bee62796c845+output" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-            <xsd:complexType name="mqpropertiestype">
-                <xsd:sequence maxOccurs="1" minOccurs="1">
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="destination" type="xsd:string"/>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="destqmgr" type="xsd:string"/>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="correlationId" type="xsd:base64Binary"/>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="messageId" type="xsd:base64Binary"/>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="groupId" type="xsd:base64Binary"/>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="characterSet" type="xsd:int"/>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="alternateUserId" type="xsd:string"/>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="accountingToken" type="xsd:base64Binary"/>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="applicationIdData" type="xsd:string"/>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="applicationOriginData" type="xsd:string"/>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="putApplicationType" type="xsd:int"/>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="putApplicationName" type="xsd:string"/>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="userId" type="xsd:string"/>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="replyToQueueName" type="xsd:string"/>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="replyToQmgrName" type="xsd:string"/>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="format" type="xsd:string"/>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="expiry" type="xsd:int"/>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="priority" type="xsd:int"/>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="reportOptionPan" type="xsd:boolean"/>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="reportOptionNan" type="xsd:boolean"/>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="report" type="xsd:int"/>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="encoding" type="xsd:int"/>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="messageType" type="xsd:int"/>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="backoutCount" type="xsd:int"/>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="feedback" type="xsd:int"/>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="version" type="xsd:int"/>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="putDateTime" type="xsd:string"/>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="groupStatus" type="xsd:string"/>
-                </xsd:sequence>
-            </xsd:complexType>
-            <xsd:element name="mqproperties" type="ns0:mqpropertiestype"/>
-            <xsd:complexType name="dynamicPropertyType">
-                <xsd:sequence>
-                    <xsd:element maxOccurs="1" minOccurs="0" name="name" type="xsd:string"/>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="value" type="xsd:string"/>
-                    <xsd:element maxOccurs="1" minOccurs="0" name="type" type="xsd:string"/>
-                </xsd:sequence>
-            </xsd:complexType>
-            <xsd:complexType name="dynamicPropertiesType">
-                <xsd:sequence>
-                    <xsd:element maxOccurs="unbounded" minOccurs="0"
-                        name="dynamicProperty" type="ns0:dynamicPropertyType"/>
-                </xsd:sequence>
-            </xsd:complexType>
-            <xsd:complexType name="InteractionOutputType">
-                <xsd:sequence>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="mqproperties" type="ns0:mqpropertiestype"/>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="dynamicProperties" type="ns0:dynamicPropertiesType"/>
-                    <xsd:element maxOccurs="1" minOccurs="1" name="text" type="xsd:string"/>
-                </xsd:sequence>
-            </xsd:complexType>
-            <xsd:element name="InteractionOutput" type="ns0:InteractionOutputType"/>
-            <xsd:complexType name="BatchType">
-                <xsd:sequence maxOccurs="1" minOccurs="0">
-                    <xsd:element maxOccurs="unbounded" minOccurs="1"
-                        name="InteractionOutput" type="ns0:InteractionOutputType"/>
-                    <xsd:element maxOccurs="1" minOccurs="0"
-                        name="responsetimemillisec" type="xsd:int"/>
-                </xsd:sequence>
-            </xsd:complexType>
-            <xsd:element name="Batch" type="ns0:BatchType"/>
+            <xsd:element name="MqReqReplyError" type="ns0:MqReqReplyErrorType"/>
         </xsd:schema>
         <schema elementFormDefault="unqualified"
-            targetNamespace="http://tns.tibco.com/bw/palette/internal/activityerror+bw.mq.putActivity"
+            targetNamespace="http://tns.tibco.com/bw/palette/internal/activityerror+bw.mq.reqReplyActivity"
             xmlns="http://www.w3.org/2001/XMLSchema"
-            xmlns:Q1="http://ns.tibco.com/bw/palette/mqexception" xmlns:tns="http://tns.tibco.com/bw/palette/internal/activityerror+bw.mq.putActivity">
+            xmlns:Q1="http://ns.tibco.com/bw/palette/mqexception" xmlns:tns="http://tns.tibco.com/bw/palette/internal/activityerror+bw.mq.reqReplyActivity">
             <import namespace="http://ns.tibco.com/bw/palette/mqexception"/>
             <element name="ActivityErrorData" type="tns:ActivityErrorDataType"/>
             <complexType name="ActivityErrorDataType">
                 <choice>
                     <element maxOccurs="1" minOccurs="0" ref="Q1:MqActivityError"/>
-                </choice>
-            </complexType>
-        </schema>
-        <schema elementFormDefault="unqualified"
-            targetNamespace="http://tns.tibco.com/bw/palette/internal/activityerror+bw.mq.getActivity"
-            xmlns="http://www.w3.org/2001/XMLSchema"
-            xmlns:Q1="http://ns.tibco.com/bw/palette/mqexception" xmlns:tns="http://tns.tibco.com/bw/palette/internal/activityerror+bw.mq.getActivity">
-            <import namespace="http://ns.tibco.com/bw/palette/mqexception"/>
-            <element name="ActivityErrorData" type="tns:ActivityErrorDataType"/>
-            <complexType name="ActivityErrorDataType">
-                <choice>
-                    <element maxOccurs="1" minOccurs="0" ref="Q1:MqActivityError"/>
+                    <element maxOccurs="1" minOccurs="0" ref="Q1:MqReqReplyError"/>
                 </choice>
             </complexType>
         </schema>
     </tibex:Types>
     <tibex:ProcessInfo callable="true" createdBy="wcn00"
-        createdOn="Wed Mar 20 14:35:05 MDT 2019" description=""
+        createdOn="Tue Mar 19 07:56:41 MDT 2019" description=""
         extraErrorVars="true" modifiers="public"
         productVersion="6.5.0 HF6 V110 2019-02-05" scalable="true"
         singleton="true" stateless="false" type="IT"/>
-    <tibex:ProcessInterface context="" input="" output="{http://www.example.org/SimpleRest}response"/>
+    <tibex:ProcessInterface context=""
+        input="{http://www.example.org/ProjectRestSchema}ReqReplyIn" output="{http://www.example.org/ProjectRestSchema}ReqReplyOut"/>
     <tibex:ProcessTemplateConfigurations/>
     <notation:Diagram measurementUnit="Pixel" type="BWProcess"
         xmlns:bwnotation="http://tns.tibco.com/bw/runtime/BWNotation"
         xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         <children type="2001">
-            <children type="5001"/>
+            <children type="5001">
+                <element href="//0/@process"/>
+            </children>
             <children type="3002">
                 <styles xsi:type="notation:SortingStyle"/>
                 <styles xsi:type="notation:FilteringStyle"/>
+                <element href="//0/@process"/>
             </children>
             <children type="3003">
                 <styles xsi:type="notation:SortingStyle"/>
                 <styles xsi:type="notation:FilteringStyle"/>
+                <element href="//0/@process"/>
             </children>
             <children type="3004">
                 <children type="4018">
@@ -523,24 +421,28 @@
                                     <styles
                                     fontName="Noto Sans"
                                     lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.0"/>
                                     <layoutConstraint xsi:type="notation:Bounds"/>
                                     </children>
                                     <children type="4017">
                                     <styles
                                     fontName="Noto Sans"
                                     lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.0"/>
                                     <layoutConstraint xsi:type="notation:Bounds"/>
                                     </children>
                                     <children type="4017">
                                     <styles
                                     fontName="Noto Sans"
                                     lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.0"/>
                                     <layoutConstraint xsi:type="notation:Bounds"/>
                                     </children>
                                     <children type="4017">
                                     <styles
                                     fontName="Noto Sans"
                                     lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.0"/>
                                     <layoutConstraint xsi:type="notation:Bounds"/>
                                     </children>
                                     <styles fontName="Noto Sans"
@@ -550,32 +452,36 @@
                                     gradientEndColor="50431"
                                     gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
                                     <element href="//0/@process/@activity/@activity/@activities.0"/>
-                                    <layoutConstraint x="-54"
-                                    xsi:type="notation:Bounds" y="60"/>
+                                    <layoutConstraint x="2"
+                                    xsi:type="notation:Bounds" y="2"/>
                                     </children>
                                     <children type="4002">
                                     <children type="4017">
                                     <styles
                                     fontName="Noto Sans"
                                     lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.1"/>
                                     <layoutConstraint xsi:type="notation:Bounds"/>
                                     </children>
                                     <children type="4017">
                                     <styles
                                     fontName="Noto Sans"
                                     lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.1"/>
                                     <layoutConstraint xsi:type="notation:Bounds"/>
                                     </children>
                                     <children type="4017">
                                     <styles
                                     fontName="Noto Sans"
                                     lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.1"/>
                                     <layoutConstraint xsi:type="notation:Bounds"/>
                                     </children>
                                     <children type="4017">
                                     <styles
                                     fontName="Noto Sans"
                                     lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.1"/>
                                     <layoutConstraint xsi:type="notation:Bounds"/>
                                     </children>
                                     <styles fontName="Noto Sans"
@@ -585,8 +491,8 @@
                                     gradientEndColor="50431"
                                     gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
                                     <element href="//0/@process/@activity/@activity/@activities.1"/>
-                                    <layoutConstraint x="707"
-                                    xsi:type="notation:Bounds" y="60"/>
+                                    <layoutConstraint x="564"
+                                    xsi:type="notation:Bounds" y="27"/>
                                     </children>
                                     <children type="4002">
                                     <children type="4017">
@@ -620,194 +526,8 @@
                                     gradientEndColor="50431"
                                     gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
                                     <element href="//0/@process/@activity/@activity/@activities.2"/>
-                                    <layoutConstraint x="436"
-                                    xsi:type="notation:Bounds" y="56"/>
-                                    </children>
-                                    <children type="4018">
-                                    <children type="3018">
-                                    <children type="4020">
-                                    <children type="3020">
-                                    <children type="4005">
-                                    <children type="3007">
-
-                                    <children type="4002">
-
-                                    <children type="4017">
-
-                                    <styles
-                                    fontName="Noto Sans"
-                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
-
-                                    <layoutConstraint xsi:type="notation:Bounds"/>
-                                    </children>
-
-                                    <children type="4017">
-
-                                    <styles
-                                    fontName="Noto Sans"
-                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
-
-                                    <layoutConstraint xsi:type="notation:Bounds"/>
-                                    </children>
-
-                                    <children type="4017">
-
-                                    <styles
-                                    fontName="Noto Sans"
-                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
-
-                                    <layoutConstraint xsi:type="notation:Bounds"/>
-                                    </children>
-
-                                    <children type="4017">
-
-                                    <styles
-                                    fontName="Noto Sans"
-                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
-
-                                    <layoutConstraint xsi:type="notation:Bounds"/>
-                                    </children>
-
-                                    <styles
-                                    fontName="Noto Sans"
-                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
-
-                                    <styles
-                                    backgroundColor="16777215"
-                                    gradientEndColor="50431"
-                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
-
-                                    <element href="//0/@process/@activity/@activity/@activities.3/@activity/@activity/@activity/@activities.2"/>
-
-                                    <layoutConstraint
-                                    x="19"
-                                    xsi:type="notation:Bounds" y="31"/>
-                                    </children>
-                                    <styles xsi:type="notation:DrawerStyle"/>
-                                    <styles xsi:type="notation:SortingStyle"/>
-                                    <styles xsi:type="notation:FilteringStyle"/>
-                                    </children>
-                                    <styles
-                                    fontName="Noto Sans"
-                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
-                                    <styles
-                                    backgroundColor="16777215"
-                                    gradientEndColor="50431"
-                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
-                                    <styles xsi:type="bwnotation:ResizingStyle"/>
-                                    <element href="//0/@process/@activity/@activity/@activities.3/@activity/@activity/@activity"/>
-
-                                    <layoutConstraint
-                                    height="108"
-                                    width="400"
-                                    x="2"
-                                    xsi:type="notation:Bounds" y="2"/>
-                                    </children>
-                                    <styles xsi:type="notation:SortingStyle"/>
-                                    <styles xsi:type="notation:FilteringStyle"/>
-                                    </children>
-                                    <styles
-                                    fontName="Noto Sans"
-                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
-                                    <styles xsi:type="bwnotation:BackgroundStyle"/>
-                                    <styles xsi:type="bwnotation:ResizingStyle"/>
-                                    <element href="//0/@process/@activity/@activity/@activities.3"/>
-                                    <layoutConstraint
-                                    height="320"
-                                    width="910"
-                                    x="30"
-                                    xsi:type="notation:Bounds" y="20"/>
-                                    </children>
-                                    <children type="4002">
-                                    <children type="4017">
-                                    <styles
-                                    fontName="Noto Sans"
-                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
-
-                                    <layoutConstraint xsi:type="notation:Bounds"/>
-                                    </children>
-                                    <children type="4017">
-                                    <styles
-                                    fontName="Noto Sans"
-                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
-
-                                    <layoutConstraint xsi:type="notation:Bounds"/>
-                                    </children>
-                                    <children type="4017">
-                                    <styles
-                                    fontName="Noto Sans"
-                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
-
-                                    <layoutConstraint xsi:type="notation:Bounds"/>
-                                    </children>
-                                    <children type="4017">
-                                    <styles
-                                    fontName="Noto Sans"
-                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
-
-                                    <layoutConstraint xsi:type="notation:Bounds"/>
-                                    </children>
-                                    <styles
-                                    fontName="Noto Sans"
-                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
-                                    <styles
-                                    backgroundColor="16777215"
-                                    gradientEndColor="50431"
-                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
-                                    <element href="//0/@process/@activity/@activity/@activities.3/@activity/@activity/@activity/@activities.0"/>
-                                    <layoutConstraint xsi:type="notation:Bounds"/>
-                                    </children>
-                                    <children type="4002">
-                                    <children type="4017">
-                                    <styles
-                                    fontName="Noto Sans"
-                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
-
-                                    <layoutConstraint xsi:type="notation:Bounds"/>
-                                    </children>
-                                    <children type="4017">
-                                    <styles
-                                    fontName="Noto Sans"
-                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
-
-                                    <layoutConstraint xsi:type="notation:Bounds"/>
-                                    </children>
-                                    <children type="4017">
-                                    <styles
-                                    fontName="Noto Sans"
-                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
-
-                                    <layoutConstraint xsi:type="notation:Bounds"/>
-                                    </children>
-                                    <children type="4017">
-                                    <styles
-                                    fontName="Noto Sans"
-                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
-
-                                    <layoutConstraint xsi:type="notation:Bounds"/>
-                                    </children>
-                                    <styles
-                                    fontName="Noto Sans"
-                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
-                                    <styles
-                                    backgroundColor="16777215"
-                                    gradientEndColor="50431"
-                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
-                                    <element href="//0/@process/@activity/@activity/@activities.3/@activity/@activity/@activity/@activities.1"/>
-                                    <layoutConstraint xsi:type="notation:Bounds"/>
-                                    </children>
-                                    <styles xsi:type="notation:SortingStyle"/>
-                                    <styles xsi:type="notation:FilteringStyle"/>
-                                    </children>
-                                    <styles fontName="Noto Sans"
-                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
-                                    <styles xsi:type="bwnotation:BackgroundStyle"/>
-                                    <styles xsi:type="bwnotation:ResizingStyle"/>
-                                    <element href="//0/@process/@activity/@activity/@activities.3"/>
-                                    <layoutConstraint
-                                    height="165" width="213"
-                                    x="137"
-                                    xsi:type="notation:Bounds" y="5"/>
+                                    <layoutConstraint x="259"
+                                    xsi:type="notation:Bounds" y="18"/>
                                     </children>
                                     <styles xsi:type="notation:DrawerStyle"/>
                                     <styles xsi:type="notation:SortingStyle"/>
@@ -821,11 +541,12 @@
                                     gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
                                     <styles xsi:type="bwnotation:ResizingStyle"/>
                                     <element href="//0/@process/@activity/@activity"/>
-                                    <layoutConstraint height="384"
-                                    width="1005" xsi:type="notation:Bounds"/>
+                                    <layoutConstraint height="171"
+                                    width="859" xsi:type="notation:Bounds"/>
                                 </children>
                                 <styles xsi:type="notation:SortingStyle"/>
                                 <styles xsi:type="notation:FilteringStyle"/>
+                                <element href="//0/@process/@activity"/>
                             </children>
                             <styles fontName="Noto Sans" lineColor="0" xsi:type="notation:ShapeStyle"/>
                             <styles xsi:type="bwnotation:BackgroundStyle"/>
@@ -850,31 +571,20 @@
             </children>
             <styles fontName="Noto Sans" lineColor="0" xsi:type="notation:ShapeStyle"/>
             <element href="//0/@process"/>
-            <layoutConstraint height="426" width="1350" xsi:type="notation:Bounds"/>
+            <layoutConstraint height="247" width="1075" xsi:type="notation:Bounds"/>
         </children>
         <styles xsi:type="notation:DiagramStyle"/>
         <element href="//0"/>
         <edges
             source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0"
-            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.3" type="4006">
-            <children type="6002">
-                <layoutConstraint xsi:type="notation:Location" y="40"/>
-            </children>
-            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
-            <styles fontName="Noto Sans" xsi:type="notation:FontStyle"/>
-            <element href="//0/@process/@activity/@activity/@links/@children.0"/>
-            <bendpoints points="[0, 0, 0, 0]$[0, 0, 0, 0]" xsi:type="notation:RelativeBendpoints"/>
-        </edges>
-        <edges
-            source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.3"
             target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.2" type="4006">
             <children type="6002">
                 <layoutConstraint xsi:type="notation:Location" y="40"/>
             </children>
             <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
             <styles fontName="Noto Sans" xsi:type="notation:FontStyle"/>
-            <element href="//0/@process/@activity/@activity/@links/@children.1"/>
-            <bendpoints points="[0, 0, 0, 0]$[0, 0, 0, 0]" xsi:type="notation:RelativeBendpoints"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.0"/>
+            <bendpoints points="[25, 2, -232, -14]$[233, 14, -24, -2]" xsi:type="notation:RelativeBendpoints"/>
         </edges>
         <edges
             source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.2"
@@ -884,61 +594,39 @@
             </children>
             <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
             <styles fontName="Noto Sans" xsi:type="notation:FontStyle"/>
-            <element href="//0/@process/@activity/@activity/@links/@children.2"/>
-            <bendpoints points="[25, 1, -290, -16]$[291, 16, -24, -1]" xsi:type="notation:RelativeBendpoints"/>
-        </edges>
-        <edges
-            source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.3/@children.0/@children.1"
-            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0" type="4006">
-            <children type="6002">
-                <layoutConstraint xsi:type="notation:Location" y="40"/>
-            </children>
-            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
-            <styles fontName="Noto Sans" xsi:type="notation:FontStyle"/>
-            <element href="//0/@process/@activity/@activity/@activities.3/@activity/@activity/@activity/@links/@children.0"/>
-            <bendpoints points="[0, 0, 0, 0]$[0, 0, 0, 0]" xsi:type="notation:RelativeBendpoints"/>
-        </edges>
-        <edges
-            source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0"
-            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.3/@children.0/@children.2" type="4006">
-            <children type="6002">
-                <layoutConstraint xsi:type="notation:Location" y="40"/>
-            </children>
-            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
-            <styles fontName="Noto Sans" xsi:type="notation:FontStyle"/>
-            <element href="//0/@process/@activity/@activity/@activities.3/@activity/@activity/@activity/@links/@children.1"/>
-            <bendpoints points="[0, 0, 0, 0]$[0, 0, 0, 0]" xsi:type="notation:RelativeBendpoints"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.1"/>
+            <bendpoints points="[25, 1, -476, -19]$[477, 19, -24, -1]" xsi:type="notation:RelativeBendpoints"/>
         </edges>
     </notation:Diagram>
     <tibex:NamespaceRegistry enabled="true">
         <tibex:namespaceItem
-            namespace="http://ns.tibco.com/bw/palette/mqputinput+0f400729-50e5-4360-847d-34cddab8dcb7+input" prefix="tns"/>
+            namespace="http://www.example.org/ProjectRestSchema" prefix="tns1"/>
         <tibex:namespaceItem
-            namespace="http://www.example.org/SimpleRest" prefix="tns1"/>
-        <tibex:namespaceItem
-            namespace="http://ns.tibco.com/bw/palette/mqgetinput+419610e6-c1d1-47b6-a4a0-bee62796c845+input" prefix="tns2"/>
+            namespace="http://ns.tibco.com/bw/palette/mqputinput+178d99f7-c390-49fd-bc76-27985011a973+input" prefix="tns"/>
         <tibex:namespaceItem
             namespace="http://www.w3.org/2001/XMLSchema" prefix="xsd"/>
     </tibex:NamespaceRegistry>
-    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.org/SimpleRest"/>
+    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.org/ProjectRestSchema"/>
     <bpws:variables>
         <bpws:variable element="ns:ProcessContext"
             name="_processContext" sca-bpel:internal="true"/>
-        <bpws:variable element="ns0:InteractionInput" name="Put-input" sca-bpel:internal="true"/>
-        <bpws:variable element="ns1:InteractionOutput" name="Put" sca-bpel:internal="true"/>
-        <bpws:variable element="ns2:ActivityErrorData" name="_error_Put" sca-bpel:internal="true"/>
+        <bpws:variable element="ns0:InteractionInput"
+            name="RequestReply-input" sca-bpel:internal="true"/>
+        <bpws:variable element="ns1:InteractionOutput"
+            name="RequestReply" sca-bpel:internal="true"/>
+        <bpws:variable element="ns2:ActivityErrorData"
+            name="_error_RequestReply" sca-bpel:internal="true"/>
         <bpws:variable element="ns:ErrorReport" name="_error" sca-bpel:internal="true"/>
         <bpws:variable name="MqConnection" sca-bpel:hotUpdate="false"
             sca-bpel:privateProperty="true" sca-bpel:property="yes"
             sca-bpel:sharedResourceType="{http://ns.tibco.com/bw/palette/mqconfiguration}MqConnectionConfiguration" type="xsd:string">
             <bpws:from>
-                <bpws:literal>mqunittests851.module.CafeMQPooled</bpws:literal>
+                <bpws:literal>testlistener.module.GandalfMq91</bpws:literal>
             </bpws:from>
         </bpws:variable>
-        <bpws:variable element="ns3:InteractionInput" name="Get-input" sca-bpel:internal="true"/>
-        <bpws:variable element="ns4:Batch" name="Get" sca-bpel:internal="true"/>
-        <bpws:variable element="ns5:ActivityErrorData" name="_error_Get" sca-bpel:internal="true"/>
-        <bpws:variable element="ns6:response" name="End-input"
+        <bpws:variable element="ns3:ReqReplyIn" name="Start"
+            sca-bpel:internal="true" tibex:parameter="in"/>
+        <bpws:variable element="ns3:ReqReplyOut" name="End-input"
             sca-bpel:internal="true" tibex:parameter="out"/>
     </bpws:variables>
     <bpws:extensions>
@@ -952,16 +640,16 @@
     <bpws:scope name="scope">
         <bpws:flow name="flow">
             <bpws:links>
-                <bpws:link name="StartToRepeat" tibex:linkType="SUCCESS"/>
-                <bpws:link name="RepeatToGet" tibex:linkType="SUCCESS"/>
-                <bpws:link name="GetToEnd" tibex:linkType="SUCCESS"/>
+                <bpws:link name="StartToRequestReply" tibex:linkType="SUCCESS"/>
+                <bpws:link name="RequestReplyToEnd" tibex:linkType="SUCCESS"/>
             </bpws:links>
             <bpws:extensionActivity>
                 <tibex:receiveEvent createInstance="yes"
                     eventTimeout="0" name="Start"
-                    tibex:xpdlId="35c72945-cebf-4294-8d04-013e66950e5a" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
+                    tibex:xpdlId="1c77f806-7bf5-4a7e-8ae6-f9397fdeebe1"
+                    variable="Start" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
                     <bpws:sources>
-                        <bpws:source linkName="StartToRepeat"/>
+                        <bpws:source linkName="StartToRequestReply"/>
                     </bpws:sources>
                     <tibex:eventSource>
                         <tibex:StartEvent xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
@@ -971,13 +659,13 @@
             <bpws:extensionActivity>
                 <tibex:activityExtension inputVariable="End-input"
                     name="End"
-                    tibex:xpdlId="be6de016-3b0a-4da3-9dc9-4fe2a0521868" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
+                    tibex:xpdlId="83c539ee-1b9c-4416-90cb-44b1998a49b1" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
                     <bpws:targets>
-                        <bpws:target linkName="GetToEnd"/>
+                        <bpws:target linkName="RequestReplyToEnd"/>
                     </bpws:targets>
                     <tibex:inputBindings>
                         <tibex:inputBinding
-                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns1=&quot;http://www.example.org/SimpleRest&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;Get&quot;/>&lt;xsl:template name=&quot;End-input&quot; match=&quot;/&quot;>&lt;tns1:response>&lt;tns1:response>&lt;xsl:value-of select=&quot;$Get/InteractionOutput[1]/text&quot;/>&lt;/tns1:response>&lt;/tns1:response>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns1=&quot;http://www.example.org/ProjectRestSchema&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;RequestReply&quot;/>&lt;xsl:template name=&quot;End-input&quot; match=&quot;/&quot;>&lt;tns1:ReqReplyOut>&lt;tns1:response>&lt;xsl:value-of select=&quot;concat(&amp;quot;ReqReplyCompleted in &amp;quot; ,  xsd:string($RequestReply/responsetimemillisec) , &amp;quot; millisecs with reply:  &amp;quot;, $RequestReply/text)&quot;/>&lt;/tns1:response>&lt;/tns1:ReqReplyOut>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                     </tibex:inputBindings>
                     <tibex:config>
                         <bwext:BWActivity
@@ -996,110 +684,44 @@
                 </tibex:activityExtension>
             </bpws:extensionActivity>
             <bpws:extensionActivity>
-                <tibex:activityExtension inputVariable="Get-input"
-                    name="Get" outputVariable="Get"
-                    tibex:xpdlId="419610e6-c1d1-47b6-a4a0-bee62796c845" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
+                <tibex:activityExtension
+                    inputVariable="RequestReply-input"
+                    name="RequestReply" outputVariable="RequestReply"
+                    tibex:xpdlId="178d99f7-c390-49fd-bc76-27985011a973" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
                     <bpws:targets>
-                        <bpws:target linkName="RepeatToGet"/>
+                        <bpws:target linkName="StartToRequestReply"/>
                     </bpws:targets>
                     <bpws:sources>
-                        <bpws:source linkName="GetToEnd"/>
+                        <bpws:source linkName="RequestReplyToEnd"/>
                     </bpws:sources>
                     <tibex:inputBindings>
                         <tibex:inputBinding
-                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns2=&quot;http://ns.tibco.com/bw/palette/mqgetinput+419610e6-c1d1-47b6-a4a0-bee62796c845+input&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;Put&quot;/>&lt;xsl:template name=&quot;Get-input&quot; match=&quot;/&quot;>&lt;tns2:InteractionInput>&lt;mqproperties>&lt;destination>&lt;xsl:value-of select=&quot;&amp;quot;wcn.logical.req&amp;quot;&quot;/>&lt;/destination>&lt;xsl:if test=&quot;$Put/mqproperties/correlationId&quot;>&lt;correlationId>&lt;xsl:value-of select=&quot;$Put/mqproperties/correlationId&quot;/>&lt;/correlationId>&lt;/xsl:if>&lt;/mqproperties>&lt;/tns2:InteractionInput>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://ns.tibco.com/bw/palette/mqputinput+178d99f7-c390-49fd-bc76-27985011a973+input&quot; xmlns:tns1=&quot;http://www.example.org/ProjectRestSchema&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;Start&quot;/>&lt;xsl:template name=&quot;RequestReply-input&quot; match=&quot;/&quot;>&lt;tns:InteractionInput>&lt;mqproperties>&lt;waitinterval>&lt;xsl:value-of select=&quot;5000&quot;/>&lt;/waitinterval>&lt;/mqproperties>&lt;text>&lt;xsl:value-of select=&quot;$Start/tns1:request&quot;/>&lt;/text>&lt;/tns:InteractionInput>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                     </tibex:inputBindings>
                     <tibex:config>
                         <bwext:BWActivity
-                            activityTypeID="bw.mq.getActivity"
+                            activityTypeID="bw.mq.reqReplyActivity"
                             xmlns:activityconfig="http://tns.tibco.com/bw/model/activityconfig"
                             xmlns:bwext="http://tns.tibco.com/bw/model/core/bwext"
                             xmlns:mqmodel="http://ns.tibco.com/bw/palette/mq" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                             <activityConfig>
                                 <properties name="config" xsi:type="activityconfig:EMFProperty">
-                                    <type href="http://ns.tibco.com/bw/palette/mq#//GetConfig"/>
+                                    <type href="http://ns.tibco.com/bw/palette/mq#//ReqReplyConfig"/>
                                     <value Connection="MqConnection"
-                                    Expiration="0"
-                                    GetMultiMessageSupport="BatchGroup"
+                                    Destination="wcn.test.request"
+                                    DynamicReplyTo="true"
+                                    Expiration="1000"
+                                    GenCorrId="true"
+                                    MessageType="REQUEST"
                                     MsgContentType="Text"
-                                    WaitTimeout="300" xsi:type="mqmodel:GetConfig"/>
+                                    ReplyToDestination=""
+                                    ReplyToModelQueueName="YYZ.MODEL.SHARED.QUEUE" xsi:type="mqmodel:ReqReplyConfig"/>
                                 </properties>
                             </activityConfig>
                         </bwext:BWActivity>
                     </tibex:config>
                 </tibex:activityExtension>
             </bpws:extensionActivity>
-            <bpws:scope name="ForEach" tibex:group="foreach" tibex:xpdlId="6eaaa578-13be-4203-978c-76b3ecc2bbc2">
-                <bpws:targets>
-                    <bpws:target linkName="StartToRepeat"/>
-                </bpws:targets>
-                <bpws:sources>
-                    <bpws:source linkName="RepeatToGet"/>
-                </bpws:sources>
-                <bpws:forEach counterName="index" name="forEach"
-                    parallel="no" tibex:group="foreach">
-                    <bpws:startCounterValue><![CDATA[1]]></bpws:startCounterValue>
-                    <bpws:finalCounterValue><![CDATA[3]]></bpws:finalCounterValue>
-                    <bpws:scope name="innerScope">
-                        <bpws:flow name="flow1">
-                            <bpws:links>
-                                <bpws:link name="GroupStartToPut" tibex:linkType="SUCCESS"/>
-                                <bpws:link name="PutToGroupEnd" tibex:linkType="SUCCESS"/>
-                            </bpws:links>
-                            <bpws:empty name="GroupStart"
-                                tibex:group="groupStart" tibex:xpdlId="8732eebe-4207-474d-988a-45aff2c67c4a">
-                                <bpws:sources>
-                                    <bpws:source linkName="GroupStartToPut"/>
-                                </bpws:sources>
-                            </bpws:empty>
-                            <bpws:empty name="GroupEnd"
-                                tibex:group="groupEnd" tibex:xpdlId="4b6dd256-deac-4da5-8324-9c4677811007">
-                                <bpws:targets>
-                                    <bpws:target linkName="PutToGroupEnd"/>
-                                </bpws:targets>
-                            </bpws:empty>
-                            <bpws:extensionActivity>
-                                <tibex:activityExtension
-                                    inputVariable="Put-input" name="Put"
-                                    outputVariable="Put"
-                                    tibex:xpdlId="0f400729-50e5-4360-847d-34cddab8dcb7" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
-                                    <bpws:targets>
-                                    <bpws:target linkName="GroupStartToPut"/>
-                                    </bpws:targets>
-                                    <bpws:sources>
-                                    <bpws:source linkName="PutToGroupEnd"/>
-                                    </bpws:sources>
-                                    <tibex:inputBindings>
-                                    <tibex:inputBinding
-                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://ns.tibco.com/bw/palette/mqputinput+0f400729-50e5-4360-847d-34cddab8dcb7+input&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;index&quot;/>&lt;xsl:template name=&quot;Put-input&quot; match=&quot;/&quot;>&lt;tns:InteractionInput>&lt;text>&lt;xsl:value-of select=&quot;concat(&amp;quot;logical message number: &amp;quot;, xsd:string($index))&quot;/>&lt;/text>&lt;lastMessageInGroup>&lt;xsl:value-of select=&quot;$index >= 3&quot;/>&lt;/lastMessageInGroup>&lt;/tns:InteractionInput>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
-                                    </tibex:inputBindings>
-                                    <tibex:config>
-                                    <bwext:BWActivity
-                                    activityTypeID="bw.mq.putActivity"
-                                    xmlns:activityconfig="http://tns.tibco.com/bw/model/activityconfig"
-                                    xmlns:bwext="http://tns.tibco.com/bw/model/core/bwext"
-                                    xmlns:mqmodel="http://ns.tibco.com/bw/palette/mq" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                                    <activityConfig>
-                                    <properties
-                                    name="config" xsi:type="activityconfig:EMFProperty">
-                                    <type href="http://ns.tibco.com/bw/palette/mq#//PutConfig"/>
-                                    <value
-                                    Connection="MqConnection"
-                                    Destination="wcn.logical.req"
-                                    Expiration="0"
-                                    GenCorrId="true"
-                                    MsgContentType="Text"
-                                    MultiMessageSupport="CustomGroup" xsi:type="mqmodel:PutConfig"/>
-                                    </properties>
-                                    </activityConfig>
-                                    </bwext:BWActivity>
-                                    </tibex:config>
-                                </tibex:activityExtension>
-                            </bpws:extensionActivity>
-                        </bpws:flow>
-                    </bpws:scope>
-                </bpws:forEach>
-            </bpws:scope>
         </bpws:flow>
     </bpws:scope>
 </bpws:process>

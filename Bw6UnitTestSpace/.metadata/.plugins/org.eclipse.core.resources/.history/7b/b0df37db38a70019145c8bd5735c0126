@@ -1029,7 +1029,9 @@
                     </tibex:config>
                 </tibex:activityExtension>
             </bpws:extensionActivity>
-            <bpws:scope name="ForEach" tibex:group="foreach" tibex:xpdlId="6eaaa578-13be-4203-978c-76b3ecc2bbc2">
+            <bpws:scope name="ForEach" tibex:group="foreach"
+                tibex:indexOriginalName="index"
+                tibex:indexToGlobal="false" tibex:xpdlId="6eaaa578-13be-4203-978c-76b3ecc2bbc2">
                 <bpws:targets>
                     <bpws:target linkName="StartToRepeat"/>
                 </bpws:targets>
