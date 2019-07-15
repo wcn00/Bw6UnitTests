@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/ProjectRestSchema" xmlns:tns="http://www.example.org/ProjectRestSchema" elementFormDefault="qualified">
+
+    <complexType name="RestInputReqReply">
+    	<sequence>
+    		<element name="request" type="string"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="RestOutputReqReply">
+    	<sequence>
+    		<element name="response" type="string"></element>
+    	</sequence>
+    </complexType>
+
+    <element name="ReqReplyIn" type="tns:RestInputReqReply"></element>
+
+    <element name="ReqReplyOut" type="tns:RestOutputReqReply"></element>
+</schema>

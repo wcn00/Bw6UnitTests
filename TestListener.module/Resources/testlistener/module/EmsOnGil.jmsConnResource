@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jndi:namedResource xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jms="http://xsd.tns.tibco.com/bw/models/sharedresource/jms" xmlns:jndi="http://xsd.tns.tibco.com/amf/models/sharedresource/jndi" xmi:id="_NhsaMEc3EemyAKxpr5N5FA" name="testlistener.module.EmsOnGil" type="jms:JMSConnectionFactory">
+  <jndi:configuration xsi:type="jms:DirectConnectionFactory" xmi:id="_OxJ28Ec3EemyAKxpr5N5FA" factoryType="Queue/Topic" providerURL="tcp://gil:7222">
+    <userCredentials xmi:id="_u7suwEpLEemZ1vX8kjfcFw" username="wcn00" password="#!lK2eSovRMUxqqMUJu+XBhEzo8R3btx8e"/>
+  </jndi:configuration>
+</jndi:namedResource>

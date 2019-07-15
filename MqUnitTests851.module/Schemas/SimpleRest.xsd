@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/SimpleRest" xmlns:tns="http://www.example.org/SimpleRest" elementFormDefault="qualified">
+
+    <complexType name="request">
+    	<sequence>
+    		<element name="request" type="string"></element>
+    	</sequence>
+    </complexType>
+    
+    <complexType name="response">
+    	<sequence>
+    		<element name="response" type="string"></element>
+    	</sequence>
+    </complexType>
+
+    <element name="request" type="tns:request"></element>
+
+    <element name="response" type="tns:response"></element>
+</schema>

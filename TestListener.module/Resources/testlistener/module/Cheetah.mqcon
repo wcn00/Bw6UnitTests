@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jndi:namedResource xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jndi="http://xsd.tns.tibco.com/amf/models/sharedresource/jndi" xmlns:mqcon="http://ns.tibco.com/bw/palette/mqconfiguration" xmi:id="_r3EfoUanEemuFMZy-lXu3Q" name="testlistener.module.Cheetah" type="mqcon:MqConnectionConfiguration">
+  <jndi:configuration xsi:type="mqcon:MqConnection" xmi:id="_r3EfokanEemuFMZy-lXu3Q" Host="cheetah.na.tibco.com" Userid="wnichols" Password="#!FhZ3BCwezBcNq72o+Y01Xojfh6c1cvWg" PoolMax="80" PoolTimeout="300" ServerChannel="SVRCONN_LISTENER"/>
+</jndi:namedResource>

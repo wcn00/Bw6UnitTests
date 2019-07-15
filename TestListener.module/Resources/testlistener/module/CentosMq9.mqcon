@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jndi:namedResource xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jndi="http://xsd.tns.tibco.com/amf/models/sharedresource/jndi" xmlns:mqcon="http://ns.tibco.com/bw/palette/mqconfiguration" xmi:id="_x4w-QETkEemqp_eeG2Z3TA" name="testlistener.module.CentosMq9" type="mqcon:MqConnectionConfiguration">
+  <jndi:configuration xsi:type="mqcon:MqConnection" xmi:id="_x4yzcETkEemqp_eeG2Z3TA" Host="centosmq9" Userid="wcn00" Password="#!Kp9LUQ8/e66Lt9mdBaAdl82vp+mwE1Y3JaB3XhuHpSI5mItljHaEgw==" ServerChannel="SVRCONN"/>
+</jndi:namedResource>

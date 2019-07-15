@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jndi:namedResource xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jndi="http://xsd.tns.tibco.com/amf/models/sharedresource/jndi" xmlns:mqcon="http://ns.tibco.com/bw/palette/mqconfiguration" xmi:id="_Edg6UUfvEembXZdXiRnArQ" name="testlistener.module.GandalfMq91" type="mqcon:MqConnectionConfiguration">
+  <jndi:configuration xsi:type="mqcon:MqConnection" xmi:id="_Edg6UkfvEembXZdXiRnArQ" Host="gandalf" Userid="wcn00" Password="#!vtpNbNoUbvd7orUN57pITr+Xid6kL7tqrmM8bRKiWkXriS9V9Exkfw==" ServerChannel="SVRCONN"/>
+</jndi:namedResource>

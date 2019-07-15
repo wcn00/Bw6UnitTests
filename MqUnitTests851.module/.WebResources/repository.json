@@ -1,0 +1,29 @@
+{
+    "records": [],
+    "resources": [
+        {
+            "location": "Service Descriptors/mqunittests851.module.UnitTestRest-UnitTestRest.json",
+            "type": "generated"
+        },
+        {
+            "location": "Service Descriptors/inquire.Inquire-Inquire.json",
+            "type": "generated"
+        },
+        {
+            "location": "Service Descriptors/inquire.InquireBrowseGetPut-InquireBrowseGetPut.json",
+            "type": "generated"
+        },
+        {
+            "location": "Service Descriptors/unit.test.rest.UnitTest-UnitTest.json",
+            "type": "generated"
+        },
+        {
+            "location": "Service Descriptors/unit.test.UnitTest-UnitTest.json",
+            "type": "generated"
+        },
+        {
+            "location": "Service Descriptors/unit.test.LocalTran-LocalTran.json",
+            "type": "generated"
+        }
+    ]
+}

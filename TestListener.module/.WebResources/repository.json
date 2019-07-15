@@ -1,0 +1,21 @@
+{
+    "records": [{
+        "name": "Cloud",
+        "items": [],
+        "url": "https://integration.cloud.tibco.com:443"
+    }],
+    "resources": [
+        {
+            "location": "Service Descriptors/testlistener.module.RequestReplyTests-RequestReplyTests.json",
+            "type": "generated"
+        },
+        {
+            "location": "Service Descriptors/RestResources.ReqReplyDynamicZos-ReqReplyDynamicZos.json",
+            "type": "generated"
+        },
+        {
+            "location": "Service Descriptors/rest.resources.ReqReplyDynamicZos-ReqReplyDynamicZos.json",
+            "type": "generated"
+        }
+    ]
+}

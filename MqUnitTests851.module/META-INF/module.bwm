@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sca:composite xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:BW="http://xsd.tns.tibco.com/amf/models/sca/implementationtype/BW" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" xmlns:compositeext="http://schemas.tibco.com/amx/3.0/compositeext" xmlns:rest="http://xsd.tns.tibco.com/bw/models/binding/rest" xmlns:sca="http://www.osoa.org/xmlns/sca/1.0" xmlns:scact="http://xsd.tns.tibco.com/amf/models/sca/componentType" xmlns:scaext="http://xsd.tns.tibco.com/amf/models/sca/extensions" xmi:id="_wgBskEstEem4BqUYz9LRVQ" targetNamespace="http://tns.tibco.com/bw/composite/MqUnitTests851.module" name="MqUnitTests851.module" compositeext:version="1.0.0" compositeext:formatVersion="2">
+  <sca:service xmi:id="_y91HlEs0Eem4BqUYz9LRVQ" name="inquirezos" promote="ComponentUnitTest/inquirezos">
+    <sca:interface.wsdl xmi:id="_y91HmEs0Eem4BqUYz9LRVQ" interface="http://xmlns.example.com/20190320112254PLT#wsdl.interface(inquirezos)" scaext:wsdlLocation="../Processes/unit/test/UnitTest.bwp"/>
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_y91uoEs0Eem4BqUYz9LRVQ" name="RestService" path="/inquirezos" docBasePath="http://localhost:7777/MqUnitTests851.module" docResourcePath="UnitTest" basePath="/" connector="mqunittests851.module.UnitTestRest" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/unit.test.UnitTest-UnitTest.json">
+      <operation xmi:id="_y91uoks0Eem4BqUYz9LRVQ" operationName="post" nickname="post-inquirezos" httpMethod="POST" responseStyle="element">
+        <clientFormat>json</clientFormat>
+        <clientRequestFormat>json</clientRequestFormat>
+      </operation>
+      <parameters xmi:id="_y92VsEs0Eem4BqUYz9LRVQ"/>
+      <advancedConfig xmi:id="_y91uoUs0Eem4BqUYz9LRVQ" blockingQueueSize="2147483647"/>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="_y91uo0s0Eem4BqUYz9LRVQ" bindingName="RestService"/>
+  </sca:service>
+  <sca:service xmi:id="_0nXRMks0Eem4BqUYz9LRVQ" name="inquiremq90" promote="ComponentUnitTest/inquiremq90">
+    <sca:interface.wsdl xmi:id="_0nX4QEs0Eem4BqUYz9LRVQ" interface="http://xmlns.example.com/20190320112254PLT#wsdl.interface(inquiremq90)" scaext:wsdlLocation="../Processes/unit/test/UnitTest.bwp"/>
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_0nX4QUs0Eem4BqUYz9LRVQ" name="RestService1" path="/inquiremq90" docBasePath="http://localhost:7777/MqUnitTests851.module" docResourcePath="UnitTest" basePath="/" connector="mqunittests851.module.UnitTestRest" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/unit.test.UnitTest-UnitTest.json">
+      <operation xmi:id="_0nX4Q0s0Eem4BqUYz9LRVQ" operationName="post" nickname="post-inquiremq90" httpMethod="POST" responseStyle="element">
+        <clientFormat>json</clientFormat>
+        <clientRequestFormat>json</clientRequestFormat>
+      </operation>
+      <parameters xmi:id="_0nYfUEs0Eem4BqUYz9LRVQ"/>
+      <advancedConfig xmi:id="_0nX4Qks0Eem4BqUYz9LRVQ" blockingQueueSize="2147483647"/>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="_0nX4REs0Eem4BqUYz9LRVQ" bindingName="RestService1"/>
+  </sca:service>
+  <sca:service xmi:id="_2C73Uks0Eem4BqUYz9LRVQ" name="inquiremq91" promote="ComponentUnitTest/inquiremq91">
+    <sca:interface.wsdl xmi:id="_2C73Vks0Eem4BqUYz9LRVQ" interface="http://xmlns.example.com/20190320112254PLT#wsdl.interface(inquiremq91)" scaext:wsdlLocation="../Processes/unit/test/UnitTest.bwp"/>
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_2C73V0s0Eem4BqUYz9LRVQ" name="RestService2" path="/inquiremq91" docBasePath="http://localhost:7777/MqUnitTests851.module" docResourcePath="UnitTest" basePath="/" connector="mqunittests851.module.UnitTestRest" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/unit.test.UnitTest-UnitTest.json">
+      <operation xmi:id="_2C73WUs0Eem4BqUYz9LRVQ" operationName="post" nickname="post-inquiremq91" httpMethod="POST" responseStyle="element">
+        <clientFormat>json</clientFormat>
+        <clientRequestFormat>json</clientRequestFormat>
+      </operation>
+      <parameters xmi:id="_2C8eYUs0Eem4BqUYz9LRVQ"/>
+      <advancedConfig xmi:id="_2C73WEs0Eem4BqUYz9LRVQ" blockingQueueSize="2147483647"/>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="_2C8eYEs0Eem4BqUYz9LRVQ" bindingName="RestService2"/>
+  </sca:service>
+  <sca:service xmi:id="__Iyrwks4Eem4BqUYz9LRVQ" name="browse" promote="ComponentUnitTest/browse">
+    <sca:interface.wsdl xmi:id="__IzS0Es4Eem4BqUYz9LRVQ" interface="http://xmlns.example.com/20190320112254PLT#wsdl.interface(browse)" scaext:wsdlLocation="../Processes/unit/test/UnitTest.bwp"/>
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="__IzS0Us4Eem4BqUYz9LRVQ" name="RestService3" path="/browse" docBasePath="http://localhost:7777/MqUnitTests851.module" docResourcePath="UnitTest" basePath="/" connector="mqunittests851.module.UnitTestRest" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/unit.test.UnitTest-UnitTest.json">
+      <operation xmi:id="__IzS00s4Eem4BqUYz9LRVQ" operationName="post" nickname="post-browse" httpMethod="POST" responseStyle="element">
+        <clientFormat>json</clientFormat>
+        <clientRequestFormat>json</clientRequestFormat>
+      </operation>
+      <parameters xmi:id="__Iz54Es4Eem4BqUYz9LRVQ"/>
+      <advancedConfig xmi:id="__IzS0ks4Eem4BqUYz9LRVQ" blockingQueueSize="2147483647"/>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="__IzS1Es4Eem4BqUYz9LRVQ" bindingName="RestService3"/>
+  </sca:service>
+  <sca:service xmi:id="_jF8aIks6Eem4BqUYz9LRVQ" name="localtran" promote="ComponentLocalTran/localtran">
+    <sca:interface.wsdl xmi:id="_jF8aJks6Eem4BqUYz9LRVQ" interface="http://xmlns.example.com/20190320120404PLT#wsdl.interface(localtran)" scaext:wsdlLocation="../Processes/unit/test/LocalTran.bwp"/>
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_jF-PUEs6Eem4BqUYz9LRVQ" name="RestService4" path="/localtran" docBasePath="http://localhost:7777/MqUnitTests851.module" docResourcePath="LocalTran" basePath="/" connector="mqunittests851.module.UnitTestRest" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/unit.test.LocalTran-LocalTran.json">
+      <operation xmi:id="_jF-PUks6Eem4BqUYz9LRVQ" operationName="post" nickname="post-localtran" httpMethod="POST" responseStyle="element">
+        <clientFormat>json</clientFormat>
+        <clientRequestFormat>json</clientRequestFormat>
+      </operation>
+      <parameters xmi:id="_jF-2YEs6Eem4BqUYz9LRVQ"/>
+      <advancedConfig xmi:id="_jF-PUUs6Eem4BqUYz9LRVQ" blockingQueueSize="2147483647"/>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="_jF-PU0s6Eem4BqUYz9LRVQ" bindingName="RestService4"/>
+  </sca:service>
+  <sca:property xmi:id="_wlZ70EstEem4BqUYz9LRVQ" name="BW.DEPLOYMENTUNIT.TYPE" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_wlcYEEstEem4BqUYz9LRVQ" name="BW.APPNODE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_wlc_IEstEem4BqUYz9LRVQ" name="BW.DEPLOYMENTUNIT.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_wleNQEstEem4BqUYz9LRVQ" name="BW.HOST.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_wle0UEstEem4BqUYz9LRVQ" name="BW.DOMAIN.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_wlgCcEstEem4BqUYz9LRVQ" name="BW.DEPLOYMENTUNIT.VERSION" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_wlhQkEstEem4BqUYz9LRVQ" name="BW.APPSPACE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_wlh3oEstEem4BqUYz9LRVQ" name="BW.MODULE.VERSION" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_wljFwEstEem4BqUYz9LRVQ" name="BW.MODULE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:component xmi:id="_FXhtoEszEem4BqUYz9LRVQ" name="ComponentInquireM90" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_FXhtoUszEem4BqUYz9LRVQ" processName="inquire.InquireM90"/>
+  </sca:component>
+  <sca:component xmi:id="_XXyOEEszEem4BqUYz9LRVQ" name="ComponentInquireM91" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_XXyOEUszEem4BqUYz9LRVQ" processName="inquire.InquireMQ91"/>
+  </sca:component>
+  <sca:component xmi:id="_y91HkEs0Eem4BqUYz9LRVQ" name="ComponentUnitTest" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_y91HkUs0Eem4BqUYz9LRVQ" processName="unit.test.UnitTest"/>
+    <sca:service xmi:id="_y91Hkks0Eem4BqUYz9LRVQ" name="inquirezos">
+      <sca:interface.wsdl xmi:id="_y91Hk0s0Eem4BqUYz9LRVQ" interface="http://xmlns.example.com/20190320112254PLT#wsdl.interface(inquirezos)" scaext:wsdlLocation="../Processes/unit/test/UnitTest.bwp"/>
+    </sca:service>
+    <sca:service xmi:id="_0nXRMEs0Eem4BqUYz9LRVQ" name="inquiremq90">
+      <sca:interface.wsdl xmi:id="_0nXRMUs0Eem4BqUYz9LRVQ" interface="http://xmlns.example.com/20190320112254PLT#wsdl.interface(inquiremq90)"/>
+    </sca:service>
+    <sca:service xmi:id="_2C73UEs0Eem4BqUYz9LRVQ" name="inquiremq91">
+      <sca:interface.wsdl xmi:id="_2C73UUs0Eem4BqUYz9LRVQ" interface="http://xmlns.example.com/20190320112254PLT#wsdl.interface(inquiremq91)"/>
+    </sca:service>
+    <sca:service xmi:id="__IyrwEs4Eem4BqUYz9LRVQ" name="browse">
+      <sca:interface.wsdl xmi:id="__IyrwUs4Eem4BqUYz9LRVQ" interface="http://xmlns.example.com/20190320112254PLT#wsdl.interface(browse)"/>
+    </sca:service>
+  </sca:component>
+  <sca:component xmi:id="_0niwAEs3Eem4BqUYz9LRVQ" name="Componentbrowsemq90" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_0niwAUs3Eem4BqUYz9LRVQ" processName="browse.browsemq90"/>
+  </sca:component>
+  <sca:component xmi:id="_xRpVwEs4Eem4BqUYz9LRVQ" name="Componentbrowsemq91" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_xRpVwUs4Eem4BqUYz9LRVQ" processName="browse.browsemq91"/>
+  </sca:component>
+  <sca:component xmi:id="_jF7MAEs6Eem4BqUYz9LRVQ" name="ComponentLocalTran" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_jF7MAUs6Eem4BqUYz9LRVQ" processName="unit.test.LocalTran"/>
+    <sca:service xmi:id="_jF8aIEs6Eem4BqUYz9LRVQ" name="localtran">
+      <sca:interface.wsdl xmi:id="_jF8aIUs6Eem4BqUYz9LRVQ" interface="http://xmlns.example.com/20190320120404PLT#wsdl.interface(localtran)" scaext:wsdlLocation="../Processes/unit/test/LocalTran.bwp"/>
+    </sca:service>
+  </sca:component>
+  <sca:component xmi:id="_NZ3LYEs-Eemh3MjpFfFqAw" name="Componentlisten" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_NZ3LYUs-Eemh3MjpFfFqAw" processName="unit.test.listener.sharedconversation.listen"/>
+  </sca:component>
+  <sca:component xmi:id="_lva70EtQEemRRrhvgoibig" name="ComponentFilePoller" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_lva70UtQEemRRrhvgoibig" processName="complex.messages.FilePoller"/>
+  </sca:component>
+</sca:composite>

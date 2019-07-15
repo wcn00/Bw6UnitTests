@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sca:composite xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:BW="http://xsd.tns.tibco.com/amf/models/sca/implementationtype/BW" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" xmlns:compositeext="http://schemas.tibco.com/amx/3.0/compositeext" xmlns:rest="http://xsd.tns.tibco.com/bw/models/binding/rest" xmlns:sca="http://www.osoa.org/xmlns/sca/1.0" xmlns:scact="http://xsd.tns.tibco.com/amf/models/sca/componentType" xmlns:scaext="http://xsd.tns.tibco.com/amf/models/sca/extensions" xmi:id="_s_2HgETkEemqp_eeG2Z3TA" targetNamespace="http://tns.tibco.com/bw/composite/TestListener.module" name="TestListener.module" compositeext:version="1.0.0" compositeext:formatVersion="2">
+  <sca:service xmi:id="_nwEuMUpOEemZ1vX8kjfcFw" name="reqreplydynamiczos" promote="ComponentReqReplyDynamicZos/reqreplydynamiczos">
+    <sca:interface.wsdl xmi:id="_nwEuNUpOEemZ1vX8kjfcFw" interface="http://xmlns.example.com/20190319075514PLT#wsdl.interface(reqreplydynamiczos)" scaext:wsdlLocation="../Processes/RestResources/ReqReplyDynamicZos.bwp"/>
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_nwFVQEpOEemZ1vX8kjfcFw" name="RestService1" path="/reqreplydynamiczos" docBasePath="http://localhost:7777/TestListener.module" docResourcePath="ReqReplyDynamicZos" basePath="/" connector="testlistener.module.RequestReplyTests" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/RestResources.ReqReplyDynamicZos-ReqReplyDynamicZos.json">
+      <operation xmi:id="_nwF8UEpOEemZ1vX8kjfcFw" operationName="post" nickname="post-reqreplydynamiczos" httpMethod="POST" responseStyle="element">
+        <parameters xmi:id="_nIGA0EpREemZ1vX8kjfcFw">
+          <parameterMapping xmi:id="_FDF_gEpTEemZ1vX8kjfcFw" parameterName="loopcount" parameterType="Query" dataType="string"/>
+        </parameters>
+        <clientFormat>json</clientFormat>
+        <clientRequestFormat>json</clientRequestFormat>
+      </operation>
+      <parameters xmi:id="_nwGjYEpOEemZ1vX8kjfcFw"/>
+      <advancedConfig xmi:id="_nwFVQUpOEemZ1vX8kjfcFw" blockingQueueSize="2147483647"/>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="_nwF8UUpOEemZ1vX8kjfcFw" bindingName="RestService1"/>
+  </sca:service>
+  <sca:service xmi:id="_kZEVUkp-EemUivmSZ_YdsQ" name="reqreplydynamicmq91" promote="ComponentReqReplyDynamicZos/reqreplydynamicmq91">
+    <sca:interface.wsdl xmi:id="_kZE8YUp-EemUivmSZ_YdsQ" interface="http://xmlns.example.com/20190319075514PLT#wsdl.interface(reqreplydynamicmq91)" scaext:wsdlLocation="../Processes/rest.resources/ReqReplyDynamicZos.bwp"/>
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_kZFjcEp-EemUivmSZ_YdsQ" name="RestService" path="/reqreplydynamicmq91" docBasePath="http://localhost:7777/TestListener.module" docResourcePath="ReqReplyDynamicZos" basePath="/" connector="testlistener.module.RequestReplyTests" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/rest.resources.ReqReplyDynamicZos-ReqReplyDynamicZos.json">
+      <operation xmi:id="_kZFjckp-EemUivmSZ_YdsQ" operationName="post" nickname="post-reqreplydynamicmq91" httpMethod="POST" responseStyle="element">
+        <clientFormat>json</clientFormat>
+        <clientRequestFormat>json</clientRequestFormat>
+      </operation>
+      <parameters xmi:id="_kZHYoEp-EemUivmSZ_YdsQ"/>
+      <advancedConfig xmi:id="_kZFjcUp-EemUivmSZ_YdsQ" blockingQueueSize="2147483647"/>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="_kZFjc0p-EemUivmSZ_YdsQ" bindingName="RestService"/>
+  </sca:service>
+  <sca:service xmi:id="_kt12AEp_EemUivmSZ_YdsQ" name="reqreplydynamicmq90" promote="ComponentReqReplyDynamicZos/reqreplydynamicmq90">
+    <sca:interface.wsdl xmi:id="_kt12BEp_EemUivmSZ_YdsQ" interface="http://xmlns.example.com/20190319075514PLT#wsdl.interface(reqreplydynamicmq90)" scaext:wsdlLocation="../Processes/rest.resources/ReqReplyDynamicZos.bwp"/>
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_kt2dEEp_EemUivmSZ_YdsQ" name="RestService2" path="/reqreplydynamicmq90" docBasePath="http://localhost:7777/TestListener.module" docResourcePath="ReqReplyDynamicZos" basePath="/" connector="testlistener.module.RequestReplyTests" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/rest.resources.ReqReplyDynamicZos-ReqReplyDynamicZos.json">
+      <operation xmi:id="_kt3EIEp_EemUivmSZ_YdsQ" operationName="post" nickname="post-reqreplydynamicmq90" httpMethod="POST" responseStyle="element">
+        <clientFormat>json</clientFormat>
+        <clientRequestFormat>json</clientRequestFormat>
+      </operation>
+      <parameters xmi:id="_kt3EIkp_EemUivmSZ_YdsQ"/>
+      <advancedConfig xmi:id="_kt2dEUp_EemUivmSZ_YdsQ" blockingQueueSize="2147483647"/>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="_kt3EIUp_EemUivmSZ_YdsQ" bindingName="RestService2"/>
+  </sca:service>
+  <sca:service xmi:id="_WvDKckqAEemUivmSZ_YdsQ" name="reqreplydynamiczosLoop" promote="ComponentReqReplyDynamicZos/reqreplydynamiczosLoop">
+    <sca:interface.wsdl xmi:id="_WvDKdkqAEemUivmSZ_YdsQ" interface="http://xmlns.example.com/20190319075514PLT#wsdl.interface(reqreplydynamiczosLoop)" scaext:wsdlLocation="../Processes/rest.resources/ReqReplyDynamicZos.bwp"/>
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_WvEYkEqAEemUivmSZ_YdsQ" name="RestService3" path="/reqreplydynamiczosLoop" docBasePath="http://localhost:7777/TestListener.module" docResourcePath="ReqReplyDynamicZos" basePath="/" connector="testlistener.module.RequestReplyTests" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/rest.resources.ReqReplyDynamicZos-ReqReplyDynamicZos.json">
+      <operation xmi:id="_WvE_oEqAEemUivmSZ_YdsQ" operationName="post" nickname="post-reqreplydynamiczosLoop" httpMethod="POST" responseStyle="element">
+        <clientFormat>json</clientFormat>
+        <clientRequestFormat>json</clientRequestFormat>
+      </operation>
+      <parameters xmi:id="_WvFmsEqAEemUivmSZ_YdsQ"/>
+      <advancedConfig xmi:id="_WvEYkUqAEemUivmSZ_YdsQ" blockingQueueSize="2147483647"/>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="_WvE_oUqAEemUivmSZ_YdsQ" bindingName="RestService3"/>
+  </sca:service>
+  <sca:service xmi:id="_xGeKIkqAEemUivmSZ_YdsQ" name="reqreplydynamicmq91loop" promote="ComponentReqReplyDynamicZos/reqreplydynamicmq91loop">
+    <sca:interface.wsdl xmi:id="_xGexMEqAEemUivmSZ_YdsQ" interface="http://xmlns.example.com/20190319075514PLT#wsdl.interface(reqreplydynamicmq91loop)" scaext:wsdlLocation="../Processes/rest.resources/ReqReplyDynamicZos.bwp"/>
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_xGf_UEqAEemUivmSZ_YdsQ" name="RestService4" path="/reqreplydynamicmq91loop" docBasePath="http://localhost:7777/TestListener.module" docResourcePath="ReqReplyDynamicZos" basePath="/" connector="testlistener.module.RequestReplyTests" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/rest.resources.ReqReplyDynamicZos-ReqReplyDynamicZos.json">
+      <operation xmi:id="_xGf_UkqAEemUivmSZ_YdsQ" operationName="post" nickname="post-reqreplydynamicmq91loop" httpMethod="POST" responseStyle="element">
+        <clientFormat>json</clientFormat>
+        <clientRequestFormat>json</clientRequestFormat>
+      </operation>
+      <parameters xmi:id="_xGh0gEqAEemUivmSZ_YdsQ"/>
+      <advancedConfig xmi:id="_xGf_UUqAEemUivmSZ_YdsQ" blockingQueueSize="2147483647"/>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="_xGf_U0qAEemUivmSZ_YdsQ" bindingName="RestService4"/>
+  </sca:service>
+  <sca:service xmi:id="_2lRVIkqAEemUivmSZ_YdsQ" name="reqreplydynamicmq90loop" promote="ComponentReqReplyDynamicZos/reqreplydynamicmq90loop">
+    <sca:interface.wsdl xmi:id="_2lR8MkqAEemUivmSZ_YdsQ" interface="http://xmlns.example.com/20190319075514PLT#wsdl.interface(reqreplydynamicmq90loop)" scaext:wsdlLocation="../Processes/rest.resources/ReqReplyDynamicZos.bwp"/>
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_2lUYcEqAEemUivmSZ_YdsQ" name="RestService5" path="/reqreplydynamicmq90loop" docBasePath="http://localhost:7777/TestListener.module" docResourcePath="ReqReplyDynamicZos" basePath="/" connector="testlistener.module.RequestReplyTests" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/rest.resources.ReqReplyDynamicZos-ReqReplyDynamicZos.json">
+      <operation xmi:id="_2lUYckqAEemUivmSZ_YdsQ" operationName="post" nickname="post-reqreplydynamicmq90loop" httpMethod="POST" responseStyle="element">
+        <clientFormat>json</clientFormat>
+        <clientRequestFormat>json</clientRequestFormat>
+      </operation>
+      <parameters xmi:id="_2lXbwEqAEemUivmSZ_YdsQ"/>
+      <advancedConfig xmi:id="_2lUYcUqAEemUivmSZ_YdsQ" blockingQueueSize="2147483647"/>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="_2lUYc0qAEemUivmSZ_YdsQ" bindingName="RestService5"/>
+  </sca:service>
+  <sca:service xmi:id="_MroQ0kqYEemUivmSZ_YdsQ" name="testputget" promote="ComponentReqReplyDynamicZos/testputget">
+    <sca:interface.wsdl xmi:id="_MroQ1kqYEemUivmSZ_YdsQ" interface="http://xmlns.example.com/20190319075514PLT#wsdl.interface(testputget)" scaext:wsdlLocation="../Processes/rest.resources/ReqReplyDynamicZos.bwp"/>
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_MrqGAEqYEemUivmSZ_YdsQ" name="RestService6" path="/testputget" docBasePath="http://localhost:7777/TestListener.module" docResourcePath="ReqReplyDynamicZos" basePath="/" connector="testlistener.module.RequestReplyTests" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/rest.resources.ReqReplyDynamicZos-ReqReplyDynamicZos.json">
+      <operation xmi:id="_MrqtEEqYEemUivmSZ_YdsQ" operationName="get" nickname="get-testputget" httpMethod="GET" responseStyle="element">
+        <clientFormat>json</clientFormat>
+        <clientRequestFormat>json</clientRequestFormat>
+      </operation>
+      <parameters xmi:id="_MruXcEqYEemUivmSZ_YdsQ"/>
+      <advancedConfig xmi:id="_MrqGAUqYEemUivmSZ_YdsQ" blockingQueueSize="2147483647"/>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="_MrqtEUqYEemUivmSZ_YdsQ" bindingName="RestService6"/>
+  </sca:service>
+  <sca:service xmi:id="_bgsSEksQEemUivmSZ_YdsQ" name="publish" promote="ComponentReqReplyDynamicZos/publish">
+    <sca:interface.wsdl xmi:id="_bgs5IEsQEemUivmSZ_YdsQ" interface="http://xmlns.example.com/20190319075514PLT#wsdl.interface(publish)" scaext:wsdlLocation="../Processes/rest.resources/ReqReplyDynamicZos.bwp"/>
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_bgvVYEsQEemUivmSZ_YdsQ" name="RestService7" path="/publish" docBasePath="http://localhost:7777/TestListener.module" docResourcePath="ReqReplyDynamicZos" basePath="/" connector="testlistener.module.RequestReplyTests" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/rest.resources.ReqReplyDynamicZos-ReqReplyDynamicZos.json">
+      <operation xmi:id="_bgvVYksQEemUivmSZ_YdsQ" operationName="get" nickname="get-publish" httpMethod="GET" responseStyle="element">
+        <clientFormat>json</clientFormat>
+        <clientRequestFormat>json</clientRequestFormat>
+      </operation>
+      <parameters xmi:id="_bg0N4EsQEemUivmSZ_YdsQ"/>
+      <advancedConfig xmi:id="_bgvVYUsQEemUivmSZ_YdsQ" blockingQueueSize="2147483647"/>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="_bgvVY0sQEemUivmSZ_YdsQ" bindingName="RestService7"/>
+  </sca:service>
+  <sca:service xmi:id="_2WkoAksTEemUivmSZ_YdsQ" name="publishto91" promote="ComponentReqReplyDynamicZos/publishto91">
+    <sca:interface.wsdl xmi:id="_2WlPEEsTEemUivmSZ_YdsQ" interface="http://xmlns.example.com/20190319075514PLT#wsdl.interface(publishto91)" scaext:wsdlLocation="../Processes/rest.resources/ReqReplyDynamicZos.bwp"/>
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_2WnEQEsTEemUivmSZ_YdsQ" name="RestService8" path="/publishto91" docBasePath="http://localhost:7777/TestListener.module" docResourcePath="ReqReplyDynamicZos" basePath="/" connector="testlistener.module.RequestReplyTests" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/rest.resources.ReqReplyDynamicZos-ReqReplyDynamicZos.json">
+      <operation xmi:id="_2WnrUEsTEemUivmSZ_YdsQ" operationName="get" nickname="get-publishto91" httpMethod="GET" responseStyle="element">
+        <clientFormat>json</clientFormat>
+        <clientRequestFormat>json</clientRequestFormat>
+      </operation>
+      <parameters xmi:id="_2Wsj0EsTEemUivmSZ_YdsQ"/>
+      <advancedConfig xmi:id="_2WnEQUsTEemUivmSZ_YdsQ" blockingQueueSize="2147483647"/>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="_2WnrUUsTEemUivmSZ_YdsQ" bindingName="RestService8"/>
+  </sca:service>
+  <sca:service xmi:id="_4J0DEksaEemUivmSZ_YdsQ" name="mq91putget" promote="ComponentReqReplyDynamicZos/mq91putget">
+    <sca:interface.wsdl xmi:id="_4J0DFksaEemUivmSZ_YdsQ" interface="http://xmlns.example.com/20190319075514PLT#wsdl.interface(mq91putget)" scaext:wsdlLocation="../Processes/rest.resources/ReqReplyDynamicZos.bwp"/>
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_4J2fUEsaEemUivmSZ_YdsQ" name="RestService9" path="/mq91putget" docBasePath="http://localhost:7777/TestListener.module" docResourcePath="ReqReplyDynamicZos" basePath="/" connector="testlistener.module.RequestReplyTests" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/rest.resources.ReqReplyDynamicZos-ReqReplyDynamicZos.json">
+      <operation xmi:id="_4J2fUksaEemUivmSZ_YdsQ" operationName="get" nickname="get-mq91putget" httpMethod="GET" responseStyle="element">
+        <clientFormat>json</clientFormat>
+        <clientRequestFormat>json</clientRequestFormat>
+      </operation>
+      <parameters xmi:id="_4J-bIEsaEemUivmSZ_YdsQ"/>
+      <advancedConfig xmi:id="_4J2fUUsaEemUivmSZ_YdsQ" blockingQueueSize="2147483647"/>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="_4J2fU0saEemUivmSZ_YdsQ" bindingName="RestService9"/>
+  </sca:service>
+  <sca:service xmi:id="_ctD9kksbEemUivmSZ_YdsQ" name="mq91putgetloop" promote="ComponentReqReplyDynamicZos/mq91putgetloop">
+    <sca:interface.wsdl xmi:id="_ctD9lksbEemUivmSZ_YdsQ" interface="http://xmlns.example.com/20190319075514PLT#wsdl.interface(mq91putgetloop)" scaext:wsdlLocation="../Processes/rest.resources/ReqReplyDynamicZos.bwp"/>
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_ctHA4EsbEemUivmSZ_YdsQ" name="RestService10" path="/mq91putgetloop" docBasePath="http://localhost:7777/TestListener.module" docResourcePath="ReqReplyDynamicZos" basePath="/" connector="testlistener.module.RequestReplyTests" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/rest.resources.ReqReplyDynamicZos-ReqReplyDynamicZos.json">
+      <operation xmi:id="_ctHA4ksbEemUivmSZ_YdsQ" operationName="get" nickname="get-mq91putgetloop" httpMethod="GET" responseStyle="element">
+        <clientFormat>json</clientFormat>
+        <clientRequestFormat>json</clientRequestFormat>
+      </operation>
+      <parameters xmi:id="_ctRY8EsbEemUivmSZ_YdsQ"/>
+      <advancedConfig xmi:id="_ctHA4UsbEemUivmSZ_YdsQ" blockingQueueSize="2147483647"/>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="_ctHA40sbEemUivmSZ_YdsQ" bindingName="RestService10"/>
+  </sca:service>
+  <sca:property xmi:id="_tgevYETkEemqp_eeG2Z3TA" name="BW.DEPLOYMENTUNIT.TYPE" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_tgpugETkEemqp_eeG2Z3TA" name="BW.APPNODE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_tgtY4ETkEemqp_eeG2Z3TA" name="BW.DEPLOYMENTUNIT.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_tgxqUETkEemqp_eeG2Z3TA" name="BW.HOST.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_tg1UsETkEemqp_eeG2Z3TA" name="BW.DOMAIN.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_tg4YAETkEemqp_eeG2Z3TA" name="BW.DEPLOYMENTUNIT.VERSION" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_tg7bUETkEemqp_eeG2Z3TA" name="BW.APPSPACE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_tg93kETkEemqp_eeG2Z3TA" name="BW.MODULE.VERSION" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_thAT0ETkEemqp_eeG2Z3TA" name="BW.MODULE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:component xmi:id="_nwEHIEpOEemZ1vX8kjfcFw" name="ComponentReqReplyDynamicZos" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_nwEHIUpOEemZ1vX8kjfcFw" processName="rest.resources.ReqReplyDynamicZos"/>
+    <sca:service xmi:id="_nwEHIkpOEemZ1vX8kjfcFw" name="reqreplydynamiczos">
+      <sca:interface.wsdl xmi:id="_nwEuMEpOEemZ1vX8kjfcFw" interface="http://xmlns.example.com/20190319075514PLT#wsdl.interface(reqreplydynamiczos)" scaext:wsdlLocation="../Processes/RestResources/ReqReplyDynamicZos.bwp"/>
+    </sca:service>
+    <sca:service xmi:id="_kZEVUEp-EemUivmSZ_YdsQ" name="reqreplydynamicmq91">
+      <sca:interface.wsdl xmi:id="_kZEVUUp-EemUivmSZ_YdsQ" interface="http://xmlns.example.com/20190319075514PLT#wsdl.interface(reqreplydynamicmq91)"/>
+    </sca:service>
+    <sca:service xmi:id="_kt1O8Ep_EemUivmSZ_YdsQ" name="reqreplydynamicmq90">
+      <sca:interface.wsdl xmi:id="_kt1O8Up_EemUivmSZ_YdsQ" interface="http://xmlns.example.com/20190319075514PLT#wsdl.interface(reqreplydynamicmq90)"/>
+    </sca:service>
+    <sca:service xmi:id="_WvDKcEqAEemUivmSZ_YdsQ" name="reqreplydynamiczosLoop">
+      <sca:interface.wsdl xmi:id="_WvDKcUqAEemUivmSZ_YdsQ" interface="http://xmlns.example.com/20190319075514PLT#wsdl.interface(reqreplydynamiczosLoop)"/>
+    </sca:service>
+    <sca:service xmi:id="_xGeKIEqAEemUivmSZ_YdsQ" name="reqreplydynamicmq91loop">
+      <sca:interface.wsdl xmi:id="_xGeKIUqAEemUivmSZ_YdsQ" interface="http://xmlns.example.com/20190319075514PLT#wsdl.interface(reqreplydynamicmq91loop)"/>
+    </sca:service>
+    <sca:service xmi:id="_2lRVIEqAEemUivmSZ_YdsQ" name="reqreplydynamicmq90loop">
+      <sca:interface.wsdl xmi:id="_2lRVIUqAEemUivmSZ_YdsQ" interface="http://xmlns.example.com/20190319075514PLT#wsdl.interface(reqreplydynamicmq90loop)"/>
+    </sca:service>
+    <sca:service xmi:id="_MroQ0EqYEemUivmSZ_YdsQ" name="testputget">
+      <sca:interface.wsdl xmi:id="_MroQ0UqYEemUivmSZ_YdsQ" interface="http://xmlns.example.com/20190319075514PLT#wsdl.interface(testputget)"/>
+    </sca:service>
+    <sca:service xmi:id="_bgsSEEsQEemUivmSZ_YdsQ" name="publish">
+      <sca:interface.wsdl xmi:id="_bgsSEUsQEemUivmSZ_YdsQ" interface="http://xmlns.example.com/20190319075514PLT#wsdl.interface(publish)"/>
+    </sca:service>
+    <sca:service xmi:id="_2WkoAEsTEemUivmSZ_YdsQ" name="publishto91">
+      <sca:interface.wsdl xmi:id="_2WkoAUsTEemUivmSZ_YdsQ" interface="http://xmlns.example.com/20190319075514PLT#wsdl.interface(publishto91)"/>
+    </sca:service>
+    <sca:service xmi:id="_4J0DEEsaEemUivmSZ_YdsQ" name="mq91putget">
+      <sca:interface.wsdl xmi:id="_4J0DEUsaEemUivmSZ_YdsQ" interface="http://xmlns.example.com/20190319075514PLT#wsdl.interface(mq91putget)"/>
+    </sca:service>
+    <sca:service xmi:id="_ctD9kEsbEemUivmSZ_YdsQ" name="mq91putgetloop">
+      <sca:interface.wsdl xmi:id="_ctD9kUsbEemUivmSZ_YdsQ" interface="http://xmlns.example.com/20190319075514PLT#wsdl.interface(mq91putgetloop)" scaext:wsdlLocation="../Processes/rest.resources/ReqReplyDynamicZos.bwp"/>
+    </sca:service>
+  </sca:component>
+  <sca:component xmi:id="__vFsEEpOEemZ1vX8kjfcFw" name="ComponentTestServiceConfirm" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="__vFsEUpOEemZ1vX8kjfcFw" processName="reqreply.responders.ReplyZos"/>
+  </sca:component>
+  <sca:component xmi:id="_EPxpAEpPEemZ1vX8kjfcFw" name="ComponentReply91" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_EPxpAUpPEemZ1vX8kjfcFw" processName="reqreply.responders.Reply91"/>
+  </sca:component>
+  <sca:component xmi:id="_GQ-EsEpPEemZ1vX8kjfcFw" name="ComponentReply90" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_GQ-EsUpPEemZ1vX8kjfcFw" processName="reqreply.responders.Reply90"/>
+  </sca:component>
+  <sca:component xmi:id="_pJ5nEEp-EemUivmSZ_YdsQ" name="Componentreqreplydynamicmq91" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_pJ5nEUp-EemUivmSZ_YdsQ" processName="subprocess.reqreplydynamicmq91"/>
+  </sca:component>
+  <sca:component xmi:id="_oP9R4Ep_EemUivmSZ_YdsQ" name="Componentreqreplydynamicmq90" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_oP9R4Up_EemUivmSZ_YdsQ" processName="subprocess.reqreplydynamicmq90"/>
+  </sca:component>
+  <sca:component xmi:id="_JEsTQEqAEemUivmSZ_YdsQ" name="Componentreqreplydynamicmq90Loop" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_JEsTQUqAEemUivmSZ_YdsQ" processName="subprocess.reqreplydynamicmq90Loop"/>
+  </sca:component>
+  <sca:component xmi:id="_LELewEqAEemUivmSZ_YdsQ" name="Componentreqreplydynamicmq91Loop" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_LELewUqAEemUivmSZ_YdsQ" processName="subprocess.reqreplydynamicmq91Loop"/>
+  </sca:component>
+  <sca:component xmi:id="_Ng4xwEqAEemUivmSZ_YdsQ" name="ComponentreqreplydynamiczosLoop" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_Ng4xwUqAEemUivmSZ_YdsQ" processName="subprocess.reqreplydynamiczosLoop"/>
+  </sca:component>
+  <sca:component xmi:id="_xyLzoEsPEemUivmSZ_YdsQ" name="ComponentSubscriber" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_xyLzoUsPEemUivmSZ_YdsQ" processName="pubsub.activities.zos.Subscriber"/>
+  </sca:component>
+  <sca:component xmi:id="_BeyPYEsQEemUivmSZ_YdsQ" name="ComponentSubscriberWithConfirm" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_BeyPYUsQEemUivmSZ_YdsQ" processName="pubsub.activities.zos.SubscriberWithConfirm"/>
+  </sca:component>
+  <sca:component xmi:id="_-Jd_wEsXEemUivmSZ_YdsQ" name="ComponentSubscribe" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_-Jd_wUsXEemUivmSZ_YdsQ" processName="pubsub.activities.mq91.Subscribe"/>
+  </sca:component>
+  <sca:component xmi:id="_VI5v8EsYEemUivmSZ_YdsQ" name="ComponentSubscribeWithConfirm" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_VI5v8UsYEemUivmSZ_YdsQ" processName="pubsub.activities.mq91.SubscribeWithConfirm"/>
+  </sca:component>
+  <sca:component xmi:id="_JMYzQEsbEemUivmSZ_YdsQ" name="ComponentCopyOfputget" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_JMYzQUsbEemUivmSZ_YdsQ" processName="mq91.putget.PugGetLoop"/>
+  </sca:component>
+</sca:composite>
